@@ -2741,9 +2741,7 @@
   "version" "2.7.0"
 
 "cli-table3@^0.6.2":
-  "integrity" "sha512-w5Jac5SykAeZJKntOxJCrm63Eg5/4dhMWIcuTbo9rpE+brgaSZo0RuNJZeOyMgsUdhDeojvgyQLmjI+K50ZGyg=="
-  "resolved" "https://registry.npmjs.org/cli-table3/-/cli-table3-0.6.3.tgz"
-  "version" "0.6.3"
+  "version" "0.6.2"
   dependencies:
     "string-width" "^4.2.0"
   optionalDependencies:
@@ -5216,8 +5214,6 @@
     "chalk" "^4.0.0"
 
 "npm-bundled@^1.1.1":
-  "integrity" "sha512-x5DHup0SuyQcmL3s7Rx/YQ8sbw/Hzg0rj48eN0dV7hf5cmQq5PXIeioroH3raV1QC1yh3uTYuMThvEQF3iKgGQ=="
-  "resolved" "https://registry.npmjs.org/npm-bundled/-/npm-bundled-1.1.2.tgz"
   "version" "1.1.2"
   dependencies:
     "npm-normalize-package-bin" "^1.0.1"
@@ -5242,8 +5238,6 @@
   "version" "1.0.1"
 
 "npm-normalize-package-bin@^2.0.0":
-  "integrity" "sha512-awzfKUO7v0FscrSpRoogyNm0sajikhBWpU0QMrW09AMi9n1PoKU6WaIqUzuJSQnpciZZmJ/jMZ2Egfmb/9LiWQ=="
-  "resolved" "https://registry.npmjs.org/npm-normalize-package-bin/-/npm-normalize-package-bin-2.0.0.tgz"
   "version" "2.0.0"
 
 "npm-package-arg@^9.0.0", "npm-package-arg@^9.0.1", "npm-package-arg@^9.1.0":
