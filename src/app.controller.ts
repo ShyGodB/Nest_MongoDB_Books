@@ -2,6 +2,7 @@ import { IsNumber } from 'class-validator';
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ApiTags } from '@nestjs/swagger';
+import { max } from 'rxjs';
 
 @Controller()
 @ApiTags('default')
@@ -70,7 +71,6 @@ export class AppController {
         obj1[item['card']] = [];
         obj1[item['card']].push(item);
       }
-
       // 同花顺
       let keys2 = Object.keys(obj2);
       if (keys2.includes(item['flower'])) {
@@ -82,6 +82,7 @@ export class AppController {
     }
 
     // console.log('----', obj2)
+
 
     let keys1 = Object.keys(obj1);
     let max1 = 0;
@@ -113,29 +114,96 @@ export class AppController {
         let tempNumArr = tempArr.map(item => Number(item.card));
         tempNumArr = quickSort(tempNumArr); // 将数组从小到大进行排序，方便后续操作
         // [2, 4, 5, 6 , 8, 11]
+        // 1, 4, 5, 6, 9, 10, 11
+        // [4, 5,6 , 10, 11]
         let flag = tempNumArr[0]; // 标记数值，初始为最小值 4
+        // console.log('---------', tempNumArr);
         let continueNumber = 0; // 连续递增的次数，初始为0
         for (let e in tempNumArr) { // e 是数组的下标
           let n = tempNumArr[e];
           if (n === flag) {
             continueNumber++;
-            tempGroup.push(tempArr[e])
+            tempGroup.push(tempArr[e]);
+            flag++; 
           } else {
-            flag = n;
             if (continueNumber < 3) {
-              continueNumber = 0;
+              continueNumber = 1;
               tempGroup = [];
+              tempGroup.push(tempArr[e]);
+            } else {
+              tempGroups.push(tempGroup);
+              continueNumber = 1;
+              tempGroup = [];
+              tempGroup.push(tempArr[e]);
             }
+            flag = n + 1;
           }
-          flag++;
         }
         if (continueNumber >= 3) {
-            console.log('group is ', tempGroup);
+          tempGroups.push(tempGroup);
         }
       }
+
     }
 
-    // console.log('++++++++', max1, maxGroup1)
+    tempGroups.forEach(item => {
+      let tempNum = item.map(i => Number(i.card)).reduce((a, b) => a + b);
+      if (max2 < tempNum) {
+        max2 = tempNum;
+        maxGroup2 = item;
+      }
+    });
+
+    console.log('&&&&&&&&&&&', {
+      max1: max1,
+      maxGroup1: maxGroup1,
+      max2: max2,
+      maxGroup2: maxGroup2
+    });
+
+    let tempCardArray = ['1', '11', '12', '13'];
+    if (max1 > max2) {
+      return {
+        success: true,
+        max: max1,
+        msg: `所选牌组最优组合累计最大点数为: ${max1}`,
+        list: maxGroup1.map(item => {
+          return {
+            card: tempCardArray.includes(item.card) ? transformCard(item.card) : item.card,
+            flower: item.flower
+          }
+        })
+      }
+    } else if (max1 < max2) {
+      return {
+        success: true,
+        max: max2,
+        msg: `所选牌组最优组合累计最大点数为: ${max2}`,
+        list: maxGroup2.map(item => {
+          return {
+            card: tempCardArray.includes(item.card) ? transformCard(item.card) : item.card,
+            flower: item.flower
+          }
+        })
+      }
+    } else {
+      return {
+        success: true,
+        max: max2,
+        msg: `所选牌组最优组合累计最大点数为: ${max2}`,
+        list: maxGroup1.map(item => {
+          return {
+            card: tempCardArray.includes(item.card) ? transformCard(item.card) : item.card,
+            flower: item.flower
+          }
+        }).concat(maxGroup2.map(item => {
+          return {
+            card: tempCardArray.includes(item.card) ? transformCard(item.card) : item.card,
+            flower: item.flower
+          }
+        }))
+      }
+    }
 
 
     
@@ -173,3 +241,24 @@ function quickSort(arr) {
   }
   return quickSort(left).concat([pivot], quickSort(right));
 };
+
+function transformCard(card = '') {
+  let result = '';
+  switch (card) {
+    case '1':
+      result =  'A';
+      break;
+    case '11':
+      result = 'J';
+      break;
+    case '12':
+      result = 'Q';
+      break;
+    case '13':
+      result = 'K';
+      break;
+    default:
+      break;
+  }
+  return result;
+}
