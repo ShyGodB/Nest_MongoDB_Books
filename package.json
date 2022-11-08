@@ -28,7 +28,6 @@
     "@typegoose/typegoose": "^9.12.1",
     "@types/mongoose": "^5.11.97",
     "mongoose": "^6.7.2",
-    "nestjs-mongoose-crud": "^2.1.2",
     "nestjs-typegoose": "^7.1.38",
     "npm": "^8.19.3",
     "reflect-metadata": "^0.1.13",

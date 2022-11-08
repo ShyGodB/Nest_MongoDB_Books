@@ -9,12 +9,12 @@ export class BooksService {
     @InjectModel(Book) private readonly bookModel: ReturnModelType<typeof Book>
   ) {}
  
-  async create(book): Promise<Book> {
+  async create(book) {
     console.log('book is ', book);
-    const res = new this.bookModel({
-      "name": "Node.js 实战"
+    const res = await this.bookModel.create({
+      name: "Node.js 实战"
     });
-    return res.save();
+    return res;
   }
 
   async getAll() {

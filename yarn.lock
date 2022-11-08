@@ -5098,11 +5098,6 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-nestjs-mongoose-crud@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/nestjs-mongoose-crud/-/nestjs-mongoose-crud-2.1.2.tgz#d6d084cfcbdc555a7cf424ba253e9c481be76335"
-  integrity sha512-rvMjjClLTbWA21uNLimYm1rcDeadJCCXBEcDM8T4C2RVnWBgHZtDIhKIrzNN0KF9Q0w09rha+mHftmDCp1qPBQ==
-
 nestjs-typegoose@^7.1.38:
   version "7.1.38"
   resolved "https://registry.yarnpkg.com/nestjs-typegoose/-/nestjs-typegoose-7.1.38.tgz#c85cceef0dc4c3145348eeb8c4aa7549b90c88ac"
