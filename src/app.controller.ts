@@ -166,8 +166,9 @@ export class AppController {
       return {
         success: true,
         max: max1,
-        msg: `所选牌组最优组合累计最大点数为: ${max1}`,
-        list: maxGroup1.map(item => {
+        goodGroupNum: 1,
+        msg: `所选牌组最优组合存在一种，其累计最大点数为: ${max1}`,
+        maxGroup: maxGroup1.map(item => {
           return {
             card: tempCardArray.includes(item.card) ? transformCard(item.card) : item.card,
             flower: item.flower
@@ -178,8 +179,9 @@ export class AppController {
       return {
         success: true,
         max: max2,
-        msg: `所选牌组最优组合累计最大点数为: ${max2}`,
-        list: maxGroup2.map(item => {
+        goodGroupNum: 1,
+        msg: `所选牌组最优组合存在一种，其累计最大点数为: ${max2}`,
+        maxGroup: maxGroup2.map(item => {
           return {
             card: tempCardArray.includes(item.card) ? transformCard(item.card) : item.card,
             flower: item.flower
@@ -190,18 +192,20 @@ export class AppController {
       return {
         success: true,
         max: max2,
-        msg: `所选牌组最优组合累计最大点数为: ${max2}`,
-        list: maxGroup1.map(item => {
+        goodGroupNum: 2,
+        msg: `所选牌组最优组合存在两种，其累计最大点数为: ${max2}`,
+        maxGroupFirst: maxGroup1.map(item => {
           return {
             card: tempCardArray.includes(item.card) ? transformCard(item.card) : item.card,
             flower: item.flower
           }
-        }).concat(maxGroup2.map(item => {
+        }),
+        maxGroupSecond: maxGroup2.map(item => {
           return {
             card: tempCardArray.includes(item.card) ? transformCard(item.card) : item.card,
             flower: item.flower
           }
-        }))
+        })
       }
     }
 
