@@ -30,7 +30,6 @@ export class BooksService {
     if (name) filter.name = new RegExp(name, 'i') 
     if (category && category.length > 0) filter.category = { $in: category }
 
-    console.log('--filter is ', filter)
     return this.bookModel.find(filter).exec();
   }
 }
