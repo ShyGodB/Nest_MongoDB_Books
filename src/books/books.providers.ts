@@ -3,8 +3,8 @@ import { BookSchema } from './schemas/book';
 
 export const booksProviders = [
   {
-    provide: 'CAT_MODEL',
+    provide: 'BookModel',
     useFactory: (mongoose: Mongoose) => mongoose.model('Book', BookSchema),
-    inject: ['DATABASE_CONNECTION'],
+    inject: ['db_connection'],
   },
 ];

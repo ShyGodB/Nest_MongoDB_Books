@@ -25,8 +25,6 @@ export class BooksController {
   // 图书列表：1、全部；2、根据书名模糊查找；3、根据图书所属分类查找
   @Get()
   async get(@Query() getBookDto: GetBookDto): Promise<Book[]> {
-    console.log('----', getBookDto)
-    console.log('+++++', JSON.parse(getBookDto.category))
     if (getBookDto && getBookDto.isAll === 'true') {
         return this.booksService.findAll();
     } else {

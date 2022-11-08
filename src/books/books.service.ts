@@ -6,7 +6,7 @@ import { Book } from './interfaces/book.interface';
 
 @Injectable()
 export class BooksService {
-  constructor(@Inject('CAT_MODEL') private readonly bookModel: Model<Book>) {}
+  constructor(@Inject('BookModel') private readonly bookModel: Model<Book>) {}
 
   async create(createBookDto: CreateBookDto): Promise<Book> {
     const createdCat = this.bookModel.create(createBookDto);
