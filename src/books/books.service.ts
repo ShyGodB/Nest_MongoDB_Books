@@ -1,24 +1,23 @@
-import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Book, BookDocument } from './schemas/Book.schema';
-import { createBookDto } from './dto/createBook.dto';
-
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "nestjs-typegoose";
+import { ReturnModelType } from "@typegoose/typegoose";
+import { Book } from '@libs/db/models/book.model';
+ 
 @Injectable()
 export class BooksService {
-  // 依赖注入
-  constructor(@InjectModel(Book.name) private BookModel: Model<BookDocument>) {}
-  
-  async create(createBookDto: createBookDto): Promise<Book> {
-    const createdBook = new this.BookModel(createBookDto);
-    return createdBook.save();
+  constructor(
+    @InjectModel(Book) private readonly bookModel: ReturnModelType<typeof Book>
+  ) {}
+ 
+  async create(book): Promise<Book> {
+    console.log('book is ', book);
+    const res = new this.bookModel({
+      "name": "Node.js 实战"
+    });
+    return res.save();
   }
 
-  async findAll(): Promise<Book[]> {
-    return this.BookModel.find().exec();
-  }
-
-  sayHello() {
-    return 'hello';
+  async getAll() {
+    return await this.bookModel.find().exec();
   }
 }
